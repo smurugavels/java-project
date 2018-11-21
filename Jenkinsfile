@@ -7,12 +7,9 @@ pipeline {
                 sh 'reports/result.xml'
             }
         }
-    }
-    stages ('Build') {
         stage {
             steps {
                 sh 'ant -f build.xml -v'
             }
         }
-    }
 }
