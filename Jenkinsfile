@@ -1,15 +1,8 @@
 pipeline {
     agent any
-    environment {
-        AWS_ACCESS_KEY_ID = "${env.AWS_ID_USR}"
-        AWS_SECRET_ACCESS_KEY = "${env.AWS_ID_PSW}"
-    }
     stages {
         stage ('Unit Tests') {
             steps {
-                sh 'echo ${AWS_ID}'
-                sh 'echo ${AWS_ACCESS_KEY_ID}'
-                sh 'echo ${AWS_SECRET_ACCESS_KEY}'
                 sh 'ant -f test.xml -v'
                 junit 'reports/result.xml'
             }
@@ -29,7 +22,7 @@ pipeline {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
                                   accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                                  credentialsId: '762130a261ec-762130a261ec-762130a261ec',
+                                  credentialsId("jenkins"),
                                   secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     sh 'aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins'
                 }
