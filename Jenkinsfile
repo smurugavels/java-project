@@ -21,7 +21,7 @@ pipeline {
         stage ('Output') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '26d64cd7-11fe-412b-942a-2210b467c7d3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    sh 'sudo aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins'
+                    sh (" /usr/bin/aws aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins")
                 }
             }
         }
