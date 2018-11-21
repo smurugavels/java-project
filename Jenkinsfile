@@ -1,6 +1,7 @@
 pipeline {
-    agent any 
-    stage('Test') {    
+    agent any
+	stages {
+		stage('Test') {    
 		git 'https://github.com/rclc/java-project.git'
 		sh 'ant -buildfile test.xml'   
 	}   
@@ -9,5 +10,6 @@ pipeline {
 	}   
 	stage('Results') {    
 		junit 'reports/*.xml'   
+	}
 	}
 }
