@@ -14,7 +14,6 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-                sh "which aws"
                 sh (" /usr/bin/aws s3 cp ${WORKSPACE}/dist/rectangle-${BUILD_NUMBER}.jar s3://assignment10-smurugavels/rectangle-${BUILD_NUMBER}.jar")              
             }
         }
