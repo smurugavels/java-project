@@ -14,8 +14,8 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-                sh 'which aws'                
-                sh 'which aws s3 cp "${WORKSPACE}/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar" s3://assignment10-smurugavels/rectangle-${BUILD_NUMBER}.jar'
+                sh 'usr/bin/aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins'
+                sh 'usr/bin/aws s3 cp "${WORKSPACE}/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar" s3://assignment10-smurugavels/rectangle-${BUILD_NUMBER}.jar'                
             }
         }
     }
