@@ -14,7 +14,7 @@ pipeline {
         }
         stage ('Deploy') {
             steps {                
-                sh 'usr/bin/aws s3 cp "${WORKSPACE}/java-pipeline/dist/" s3://assignment10-smurugavels/'                
+                sh 'aws s3 cp "${WORKSPACE}/java-pipeline/dist/" s3://assignment10-smurugavels/'                
             }
         }
         stage ('Output') {
