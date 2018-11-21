@@ -14,12 +14,12 @@ pipeline {
         }
         stage ('Deploy') {
             steps {                
-                echo 'usr/bin/aws s3 cp "${WORKSPACE}/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar" s3://assignment10-smurugavels/rectangle-${BUILD_NUMBER}.jar'                
+                sh 'usr/bin/aws s3 cp "${WORKSPACE}/java-pipeline/dist/" s3://assignment10-smurugavels/'                
             }
         }
         stage ('Output') {
             steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '69938fcf-615c-4329-b14f-4e70a2f79355',  secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     sh 'aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins'
                 }
             }
