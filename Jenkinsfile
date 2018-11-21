@@ -1,5 +1,9 @@
-node('linux') {
-    stage('Build') {
-      sh 'ant'
+pipeline {
+    agent any {
+        stages {
+            stage('Build') {
+                sh 'ant'
+            }
+        }
     }
 }
