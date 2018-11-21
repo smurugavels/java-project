@@ -14,7 +14,7 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-                sh '/usr/local/bin/aws s3 cp "${WORKSPACE}/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar" https://s3.console.aws.amazon.com/s3/buckets/assignment10-smurugavels/?region=us-east-1'
+                sh '/home/jenkins/.local/bin/aws s3 cp "${WORKSPACE}/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar" https://s3.console.aws.amazon.com/s3/buckets/assignment10-smurugavels/?region=us-east-1'
             }
         }
     }
